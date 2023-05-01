@@ -1,4 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout
+from PyQt5.QtWidgets import QHBoxLayout
+
 from contact_list import ContactList
 from search_bar import SearchBar
 from new_contact_button import NewContactButton
@@ -8,7 +10,8 @@ from input_area import InputArea
 
 class ChatWindow(QWidget):
     def __init__(self, parent=None):
-        super().__init__(parent)
+        super().__init__()
+
         self.initUI()
 
     def initUI(self):
@@ -35,10 +38,18 @@ class ChatWindow(QWidget):
 
         # 用户信息栏
         user_info_bar = UserInfoBar()
-        main_layout.addLayout(user_info_bar)
+        main_layout.addWidget(user_info_bar)
 
         # 消息输入区域
         input_area = InputArea()
-        main_layout.addLayout(input_area)
+        main_layout.addWidget(input_area)
 
         self.setLayout(main_layout)
+
+if __name__ == '__main__':
+    import sys
+    from PyQt5.QtWidgets import QApplication
+    app = QApplication(sys.argv)
+    window = ChatWindow()
+    window.show()
+    sys.exit(app.exec_())
